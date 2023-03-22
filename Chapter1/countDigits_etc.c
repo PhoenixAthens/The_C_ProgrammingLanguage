@@ -1,6 +1,7 @@
 //
 // Created by Anmol Khanna on 21/03/23.
 //
+//Exercise:
 #include <stdio.h>
 int main(){
     int c,nOther,nWhite;

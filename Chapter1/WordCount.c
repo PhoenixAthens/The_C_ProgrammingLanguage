@@ -1,6 +1,7 @@
 //
 // Created by Anmol Khanna on 20/03/23.
 //
+// Exercise on page 20
 #include <stdio.h>
 #define IN 1
 #define OUT 0

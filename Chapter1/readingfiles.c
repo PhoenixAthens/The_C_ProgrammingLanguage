@@ -1,6 +1,7 @@
 //
 // Created by Anmol Khanna on 18/03/23.
 //
+//Exercise 1.8
 #include <stdio.h>
 int main(){
     int newLines=0;
