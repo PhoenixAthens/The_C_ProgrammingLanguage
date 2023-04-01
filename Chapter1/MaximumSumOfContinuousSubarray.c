@@ -9,6 +9,8 @@
 //Runtime: 141ms beats 5.5%, Memory: 12.3MB beats 79.20%
 //using Kadane's Algorithm
 //Runtime: 114ms beats 75.46%, Memory: 12.3MB beats 79.29%
+//some improvements to kadane
+//Runtime: 104ms beats 99.4%, Memory: 12.2MB beats 98.87%
 int maxSum(int*,int,int);
 int main(){
     int nums[]={-2,1,-3,4,-1,2,1,-5,4};
@@ -39,12 +41,12 @@ int maxSum(int* arr, int low, int high ){
     }
 }
 int KadaneAlgo(int* nums, int len){
-    int max=-2000000000;
+    int max=nums[0];
     int sum=0;
     for(int i=0;i<len;i++){
-        int tempSum=(sum+nums[i]);
-        max = (max>tempSum)?max:tempSum;
-        sum = (0>tempSum)?0:tempSum;
+        sum+=nums[i];
+        max = (max>sum)?max:sum;
+        if(sum<0)sum=0;
     }
     return max;
 }
