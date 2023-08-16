@@ -1,38 +1,54 @@
 #include <stdio.h>
-#define IN 1
-#define OUT 0
 int main(){
     FILE *fp;
     fp = fopen("/Users/anmolkhanna/CLionProjects/The_C_ProgrammingLanguage/Chapter1/Testing_And_Scrap/sample.txt","r");
-    int arr[1000];
-    for(int i=0;i<1000;i++)arr[i]=0;
-    int characterAtPresent;
-    //int state = IN;
-    int numberOfWords=0;
-    int WordLen = 0;
-    while((characterAtPresent = getc(fp)) != EOF){
-        if(characterAtPresent=='\n' || characterAtPresent==' ' || characterAtPresent=='\t' || characterAtPresent=='.' || characterAtPresent==',') {
-            if(WordLen!=0){
-                arr[numberOfWords++]=WordLen;
-                WordLen = 0;
+    int charCounter[52];
+    for(int i=0;i<52;i++)charCounter[i]=0;
+    int pChar;
+    while((pChar = getc(fp))!=EOF){
+        if(pChar>=97 && pChar<=122){
+            charCounter[pChar-71]++; //-97+26 = -71
+        }else if(pChar>=65 && pChar<=90){
+            charCounter[pChar-65]++;
+        }
+    }
+    for(int i=0;i<52;i++)printf("%d, ",charCounter[i]);
+    printf("\n");
+    for(int i=0;i<26;i++){
+        printf("%c -> ",65+i);
+        int j=0;
+        while(j<charCounter[i]){
+            printf("#");
+            j++;
+        }
+        printf("\n");
+    }
+    for(int i=26;i<52;i++){
+        printf("%c -> ",71+i);
+        int j=0;
+        while(j<charCounter[i]){
+            printf("#");
+            j++;
+        }
+        printf("\n");
+    }
+
+    //Vertical histogram
+    int max= charCounter[0];
+    for(int i=0;i<52;i++)if(charCounter[i]>max)max=charCounter[i];
+
+    for(int i=max;i>0;i--){
+        for(int j=0;j<52;j++){
+            if(charCounter[j]==i){
+                charCounter[j]--;
+                printf(" %c ",'#');
+            }else{
+                printf(" %c ",' ');
             }
-        }else{
-            WordLen++;
         }
+        printf("\n");
     }
-    int i=0;
-    while(arr[i]!=0){
-        printf("WordLength: %d\n",arr[i++]);
-    }
-    int max = 0;
-    for(int j=0;arr[j]!=0;j++){
-        max = (max>arr[j])?max:arr[j];
-    }
-    //DO your magic in this 2-dim array
-    int arrGraphic[i-1][max];
-    for(int k=0;k<i;k++){
-        for(int h=0;h<max;h++){
-            arrGraphic[k][h]=0;
-        }
-    }
+    for(int i=0;i<26;i++)printf(" %c ",65+i);
+    for(int i=26;i<52;i++)printf(" %c ",71+i);
+    return 0;
 }
