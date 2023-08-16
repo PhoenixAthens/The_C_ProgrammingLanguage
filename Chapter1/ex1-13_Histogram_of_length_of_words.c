@@ -39,8 +39,7 @@ int main(){
 
     for(int i=max;i>0;i--){
         for(int j=0;j<52;j++){
-            if(charCounter[j]==i){
-                charCounter[j]--;
+            if(charCounter[j]>=i){
                 printf(" %c ",'#');
             }else{
                 printf(" %c ",' ');
